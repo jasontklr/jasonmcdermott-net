@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jason McDermott</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --ink-light: #6b6b63;
+      --paper: #f7f5f0;
+      --paper-warm: #ede9e0;
+      --accent: #c0392b;
+      --rule: #d4cfc4;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Libre Baskerville', Georgia, serif;
+      min-height: 100vh;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Layout */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 72px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .name {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .tagline {
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tagline span {
+      display: inline-block;
+      margin: 0 8px;
+      color: var(--rule);
+    }
+
+    /* Rule */
+    .rule {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin: 32px 0;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 56px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    section:nth-of-type(1) { animation-delay: 0.15s; }
+    section:nth-of-type(2) { animation-delay: 0.25s; }
+    section:nth-of-type(3) { animation-delay: 0.35s; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 20px;
+    }
+
+    .bio {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--ink);
+    }
+
+    .bio em {
+      font-style: italic;
+      color: var(--ink-light);
+    }
+
+    /* Working on */
+    .projects {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .project:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .project-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .project-status {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--ink-light);
+      padding: 3px 8px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .project-status.active {
+      background: var(--accent);
+    }
+
+    /* Find me */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      transition: color 0.15s ease;
+    }
+
+    .link-item:first-child {
+      border-top: 1px solid var(--rule);
+    }
+
+    .link-item:hover {
+      color: var(--accent);
+    }
+
+    .link-item:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .link-name {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .link-detail {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      margin-top: 2px;
+      font-weight: 300;
+    }
+
+    .arrow {
+      font-size: 1rem;
+      transition: transform 0.2s ease;
+      color: var(--ink-light);
+    }
+
+    .link-item:hover .arrow {
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 96px;
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--rule);
+      letter-spacing: 0.06em;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .page { padding: 56px 24px 80px; }
+      .tagline span { display: none; }
+      .tagline { display: flex; flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <div class="name">Jason McDermott</div>
+      <div class="tagline">
+        Technologist <span>/</span> Builder <span>/</span> Sydney
+      </div>
+    </header>
+
+    <section>
+      <div class="section-label">Who I am</div>
+      <p class="bio">
+        I'm drawn to how things work — systems, organisations, technology, the way they interact and change each other. I'm a technologist, a designer, someone who makes things.<br><br>
+        Two startups behind me — <em>Dresden Vision</em> and <em>Skoutli</em> — and currently in government leading digital product work at the NSW Education Standards Authority. Learning how to be genuinely AI-native: not just using the tools, but rethinking how we adapt to a new and genuinely fascinating environment.
+      </p>
+    </section>
+
+    <section>
+      <div class="section-label">What I'm working on</div>
+      <ul class="projects">
+        <li class="project">
+          <div>
+            <div class="project-name">MAP — Motorsport Analytics Platform</div>
+            <div class="project-desc">A data platform helping surface stories from a highly complex and fast-paced sport.</div>
+          </div>
+          <span class="project-status active">Building</span>
+        </li>
+        <li class="project">
+          <div>
+            <div class="project-name">Fresh Rubber</div>
+            <div class="project-desc">An F1 podcast with Gav. Race analysis, opinions, the occasional argument.</div>
+          </div>
+          <span class="project-status active">Active</span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-label">Find me</div>
+      <div class="links">
+        <a class="link-item" href="https://podcasts.apple.com/au/podcast/fresh-rubber/id1810229766" target="_blank" rel="noopener">
+          <div>
+            <div class="link-name">Fresh Rubber</div>
+            <div class="link-detail">Apple Podcasts</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+        <a class="link-item" href="https://au.linkedin.com/in/jasondotmcdermott" target="_blank" rel="noopener">
+          <div>
+            <div class="link-name">LinkedIn</div>
+            <div class="link-detail">Professional history</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      jasonmcdermott.net
+    </footer>
+
+  </div>
+</body>
+</html>
