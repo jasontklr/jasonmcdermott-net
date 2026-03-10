@@ -6,6 +6,7 @@
 | Workspace Code | JM                             |
 | Created        | 2026-03-10                     |
 | Version        | 1.0.0                          |
+| Visibility     | Open source                    |
 
 ## Purpose
 
