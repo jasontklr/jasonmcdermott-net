@@ -1,3 +1,6 @@
 [submodule ".living-systems"]
 	path = .living-systems
 	url = https://github.com/tklrstudio/living-systems.git
+[submodule ".systems-driven-design"]
+	path = .systems-driven-design
+	url = https://github.com/tklrstudio/systems-driven-design
